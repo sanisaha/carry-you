@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import ShowReviews from '../../others/ShowReviews/ShowReviews';
 
 const ServiceDetailCard = () => {
     const service = useLoaderData();
@@ -23,7 +24,13 @@ const ServiceDetailCard = () => {
                     </div>
                 </div>
                 <div>
-                    <h1>Review section</h1>
+                    <h1 className='text-center text-4xl'>Review section</h1>
+                </div>
+                <div>
+                    <ShowReviews service={service}></ShowReviews>
+                </div>
+                <div className='text-center text-lg'>
+                    <Link to={`/reviewform/${_id}`}>Add Review</Link>
                 </div>
             </div>
         </PhotoProvider>

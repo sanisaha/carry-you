@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const Signup = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const handleRegistration = (event) => {
         event.preventDefault();
         const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
 
@@ -15,8 +17,16 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 form.reset();
+                handleUserProfile(name, photoURL);
                 console.log(user);
             })
+            .catch(e => console.error(e))
+
+    }
+    const handleUserProfile = (name, photoURL) => {
+        const profile = { displayName: name, photoURL: photoURL };
+        updateUserProfile(profile)
+            .then(() => { })
             .catch(e => console.error(e))
 
     }
@@ -29,6 +39,18 @@ const Signup = () => {
                 </div>
                 <div className="card flex-shrink-0 w-4/5  shadow-2xl bg-base-100">
                     <form onSubmit={handleRegistration} className="card-body">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input type="text" name='name' placeholder="Your name" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">photoURL</span>
+                            </label>
+                            <input type="text" name='photoURL' placeholder="Your photoURL" className="input input-bordered" />
+                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
