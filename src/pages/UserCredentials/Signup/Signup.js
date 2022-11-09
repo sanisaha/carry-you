@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaRegIdCard } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const Signup = () => {
+    const { createUser } = useContext(AuthContext);
     const handleRegistration = (event) => {
         event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(e => console.error(e))
+
     }
     return (
         <div className="hero w-4/5 mx-auto bg-base-200 pb-10">
@@ -31,7 +44,7 @@ const Signup = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6 text-center">
-                            <Link to='/register'><button className="btn btn-primary px-10">Register</button></Link>
+                            <input type="submit" className="btn btn-primary px-10" value='Register' />
                         </div>
                     </form>
                 </div>
