@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import background from '../../Assets/Banner Images/packing-13.png'
+import background from '../../../Assets/Banner Images/packing-13.png'
 
-const Home = () => {
+const Banner = () => {
     return (
         <div>
             <div className="hero min-h-screen" style={{ backgroundImage: `url(${background})` }}>
@@ -19,4 +19,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Banner;
