@@ -5,6 +5,7 @@ import Home from "../../pages/Home/Home/Home";
 import AllServices from "../../pages/Home/Services/AllServices";
 import ServiceDetailCard from "../../pages/Home/Services/ServiceDetailCard";
 import MyReviews from "../../pages/MyReviews/MyReviews";
+import EditReview from "../../pages/others/EditReview/EditReview";
 import ReviewForm from "../../pages/others/ReviewForm/ReviewForm";
 import Login from "../../pages/UserCredentials/Login/Login";
 import Signup from "../../pages/UserCredentials/Signup/Signup";
@@ -40,6 +41,11 @@ const routes = createBrowserRouter([
                 path: '/reviewform/:id',
                 element: <ReviewForm></ReviewForm>,
                 loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+            },
+            {
+                path: '/review/:id',
+                element: <EditReview></EditReview>,
+                loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
             },
             {
                 path: '/myreviews',
