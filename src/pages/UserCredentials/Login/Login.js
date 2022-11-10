@@ -3,14 +3,16 @@ import React, { useContext, useState } from 'react';
 import { FaGoogle, FaSignInAlt } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import useTitle from '../../../Hooks/useTitle';
 
 const Login = () => {
+    useTitle('Login')
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
     const googleProvider = new GoogleAuthProvider();
-    const { providerLogin, signIn } = useContext(AuthContext)
+    const { providerLogin, signIn, loading } = useContext(AuthContext)
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
             .then(result => {
@@ -27,7 +29,6 @@ const Login = () => {
         signIn(email, password)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
                 form.reset();
                 navigate(from, { replace: true });
             })
@@ -35,6 +36,13 @@ const Login = () => {
                 console.error(e)
                 setError(e.message)
             })
+    }
+    if (loading) {
+        return (<div className="flex justify-center items-center">
+            <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        </div>)
     }
     return (
         <div className="hero w-4/5 mx-auto bg-base-200 pb-10">

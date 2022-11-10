@@ -1,9 +1,27 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import useTitle from '../../../Hooks/useTitle';
 import ServiceCard from './ServiceCard';
 
 const AllServices = () => {
-    const services = useLoaderData();
+    useTitle('Services')
+    const [loading, setLoading] = useState(true);
+    const [services, setServices] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/services')
+            .then(res => res.json())
+            .then(data => {
+                setServices(data);
+                setLoading(false);
+
+            })
+    }, [])
+    if (loading) {
+        return (<div className="flex justify-center items-center">
+            <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        </div>)
+    }
 
     return (
         <div className='w-4/5 mx-auto'>

@@ -5,9 +5,11 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import useTitle from '../../Hooks/useTitle';
 
 
 const MyReviews = () => {
+    useTitle('My Reviews')
     const [reviews, setReviews] = useState([]);
     const { user } = useContext(AuthContext);
     useEffect(() => {
@@ -33,6 +35,7 @@ const MyReviews = () => {
                 .catch(e => console.error(e))
         }
     }
+
     return (
         <div>
             <div className='text-center p-5'>

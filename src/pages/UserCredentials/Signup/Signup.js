@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
 import { FaRegIdCard } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import useTitle from '../../../Hooks/useTitle';
 
 const Signup = () => {
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    useTitle('Register')
+    const { createUser, updateUserProfile, loading } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const handleRegistration = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -17,8 +22,8 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 form.reset();
+                navigate(from, { replace: true });
                 handleUserProfile(name, photoURL);
-                console.log(user);
             })
             .catch(e => console.error(e))
 
@@ -29,6 +34,13 @@ const Signup = () => {
             .then(() => { })
             .catch(e => console.error(e))
 
+    }
+    if (loading) {
+        return (<div className="flex justify-center items-center">
+            <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        </div>)
     }
     return (
         <div className="hero w-4/5 mx-auto bg-base-200 pb-10">

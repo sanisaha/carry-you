@@ -1,8 +1,13 @@
 import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import useTitle from '../../../Hooks/useTitle';
 
 const ReviewForm = () => {
+    useTitle('Submit review')
     const { user } = useContext(AuthContext);
     const { _id, title } = useLoaderData();
     const handleReviews = (event) => {
@@ -10,6 +15,7 @@ const ReviewForm = () => {
         const name = user?.displayName;
         const img = user?.photoURL;
         const email = user?.email;
+        const form = event.target;
         const message = event.target.message.value;
         const review = {
             service: _id,
@@ -27,7 +33,12 @@ const ReviewForm = () => {
             body: JSON.stringify(review)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if (data.acknowledged) {
+                    toast('your service has added successfully')
+                    form.reset();
+                }
+            })
             .catch(e => console.error(e))
     }
 
@@ -42,6 +53,7 @@ const ReviewForm = () => {
             <div className='py-5'>
                 <input className='btn btn-submit' type="submit" value="Add Review" />
             </div>
+            <ToastContainer />
 
         </form>
     );

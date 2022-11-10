@@ -1,8 +1,14 @@
 import React from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import useTitle from '../../Hooks/useTitle';
 
 const AddService = () => {
+    useTitle('Add Service')
     const handleService = (event) => {
         event.preventDefault();
+        const form = event.target;
         const title = event.target.name.value;
         const img = event.target.photoURL.value;
         const price = event.target.price.value;
@@ -22,7 +28,13 @@ const AddService = () => {
             body: JSON.stringify(service)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast('your service has added successfully')
+                    form.reset();
+                }
+            })
             .catch(e => console.error(e))
 
     }
@@ -91,6 +103,7 @@ const AddService = () => {
                     </div>
                 </form>
             </div>
+            <ToastContainer />
         </div>
 
     );
