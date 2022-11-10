@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import ShowReviews from '../../others/ShowReviews/ShowReviews';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const ServiceDetailCard = () => {
     const service = useLoaderData();
+    const { user } = useContext(AuthContext);
     const { _id, img, price, title, details } = service;
     return (
         <PhotoProvider>
@@ -23,14 +25,21 @@ const ServiceDetailCard = () => {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h1 className='text-center text-4xl'>Review section</h1>
-                </div>
-                <div>
-                    <ShowReviews service={service}></ShowReviews>
-                </div>
-                <div className='text-center text-lg'>
-                    <Link to={`/reviewform/${_id}`}>Add Review</Link>
+                <div className='bg-slate-200 p-8'>
+                    <div>
+                        <h1 className='text-center text-4xl font-semibold py-5'>Feedback from users</h1>
+                    </div>
+                    <div>
+                        <ShowReviews service={service}></ShowReviews>
+                    </div>
+                    <div className='text-center text-lg py-4'>
+                        {
+                            user?.uid ?
+                                <><Link to={`/reviewform/${_id}`}><button className='btn btn-active btn-accent text-xl'>Add Review</button></Link></>
+                                :
+                                <><Link to='/login'><button className='btn btn-warning text-xl'>Please login to add review</button></Link></>
+                        }
+                    </div>
                 </div>
             </div>
         </PhotoProvider>

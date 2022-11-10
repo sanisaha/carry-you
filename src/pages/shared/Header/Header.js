@@ -9,7 +9,7 @@ const Header = () => {
         logOut();
     }
     const navbarItems = <>
-        <li className='font-semibold'><Link>My reviews</Link></li>
+        <li className='font-semibold'><Link to='/myreviews'>My reviews</Link></li>
         <li className='font-semibold'><Link>Add Service</Link></li>
         <li className='font-semibold'><Link>Blogs</Link></li>
     </>
