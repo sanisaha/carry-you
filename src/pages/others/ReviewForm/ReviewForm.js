@@ -23,7 +23,8 @@ const ReviewForm = () => {
             reviewer: name,
             img,
             email,
-            message
+            message,
+            date: new Date()
         }
         fetch('http://localhost:5000/reviews', {
             method: 'POST',

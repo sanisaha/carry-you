@@ -8,10 +8,10 @@ const Banner = () => {
             <div className="hero min-h-screen" style={{ backgroundImage: `url(${background})` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
-                    <div className="max-w-md">
+                    <div className="max-w-md text-white">
                         <h1 className="mb-5 text-5xl font-bold">Moving is now easy and stressfree with CarryYou</h1>
-                        <p className="mb-5">CarryYou value your presious time and do really care about your very own important household belongigs </p>
-                        <button className="btn btn-primary"><Link>Book Your Service Now</Link></button>
+                        <p className="mb-5 font-semibold">CarryYou value your presious time and do really care about your very own important household belongigs </p>
+                        <button className="btn btn-primary"><Link to='/login'>Book Your Service Now</Link></button>
                     </div>
                 </div>
             </div>
