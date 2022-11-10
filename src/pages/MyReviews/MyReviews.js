@@ -4,6 +4,7 @@ import ReviewTable from './ReviewTable';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 
 const MyReviews = () => {
@@ -34,30 +35,45 @@ const MyReviews = () => {
     }
     return (
         <div>
-            <div>
-                <h2>Total reviews {reviews.length}</h2>
+            <div className='text-center p-5'>
+                <h2 className='text-3xl font-semibold'>Your Reviews</h2>
             </div>
-            <div className="overflow-x-auto">
-                <table className="table w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Service</th>
-                            <th>review</th>
-                            <th>Action</th>
-                            <th>Action</th>
+            <div className='w-4/5 mx-auto'>
+                {reviews.length < 1 ?
+                    <>
+                        <div>
+                            <div className='p-24 text-center'>
+                                <h1 className='text-5xl font-bold'>No reviews were added</h1>
+                            </div>
+                            <div className='text-center p-5'>
+                                <Link to='/services'><button className='btn btn-info'>Add A Review</button></Link>
+                            </div>
+                        </div>
+                    </>
+                    :
+                    <><div className="overflow-x-auto pt-10 pb-32">
+                        <table className="table w-1/4 lg:w-4/5 mx-auto">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Service</th>
+                                    <th>review</th>
+                                    <th>Action</th>
+                                    <th>Action</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {reviews.map((review, index) => <ReviewTable
-                            key={review._id}
-                            index={index}
-                            review={review}
-                            handleDelete={handleDelete}
-                        ></ReviewTable>)}
-                    </tbody>
-                </table>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {reviews.map((review, index) => <ReviewTable
+                                    key={review._id}
+                                    index={index}
+                                    review={review}
+                                    handleDelete={handleDelete}
+                                ></ReviewTable>)}
+                            </tbody>
+                        </table>
+                    </div></>
+                }
             </div>
             <ToastContainer />
         </div>
