@@ -11,17 +11,26 @@ import useTitle from '../../Hooks/useTitle';
 const MyReviews = () => {
     useTitle('My Reviews')
     const [reviews, setReviews] = useState([]);
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`https://carry-you-server.vercel.app/reviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('carryYou-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401) {
+                    return logOut();
+                }
+                return res.json()
+            })
             .then(data => setReviews(data))
             .catch(e => console.error(e))
-    }, [])
+    }, [user?.email, logOut])
     const handleDelete = (id) => {
         const proceed = window.confirm('are you really want to delete')
         if (proceed) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://carry-you-server.vercel.app/reviews/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

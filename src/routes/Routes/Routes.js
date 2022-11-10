@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layout/Main/Main";
 import AddService from "../../pages/AddService/AddService";
+import Blogs from "../../pages/Blogs/Blogs";
 import Home from "../../pages/Home/Home/Home";
 import AllServices from "../../pages/Home/Services/AllServices";
 import ServiceDetailCard from "../../pages/Home/Services/ServiceDetailCard";
@@ -27,7 +28,7 @@ const routes = createBrowserRouter([
             {
                 path: '/services/:id',
                 element: <ServiceDetailCard></ServiceDetailCard>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://carry-you-server.vercel.app/services/${params.id}`)
             },
             {
                 path: '/login',
@@ -40,12 +41,12 @@ const routes = createBrowserRouter([
             {
                 path: '/reviewform/:id',
                 element: <ReviewForm></ReviewForm>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://carry-you-server.vercel.app/services/${params.id}`)
             },
             {
                 path: '/review/:id',
                 element: <EditReview></EditReview>,
-                loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
+                loader: ({ params }) => fetch(`https://carry-you-server.vercel.app/review/${params.id}`)
             },
             {
                 path: '/myreviews',
@@ -54,6 +55,10 @@ const routes = createBrowserRouter([
             {
                 path: '/addservice',
                 element: <PrivateRoutes><AddService></AddService></PrivateRoutes>
+            },
+            {
+                path: '/blog',
+                element: <Blogs></Blogs>
             }
         ]
     }

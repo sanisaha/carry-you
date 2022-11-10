@@ -8,10 +8,11 @@ const PrivateRoutes = ({ children }) => {
     if (loading) {
         return <h2 className='text-center text-4xl'>Loading</h2>
     }
-    if (user) {
-        return children;
+    if (!user) {
+        return <Navigate to='/login' state={{ from: location }} replace></Navigate>;
     }
-    return <Navigate to='/login' state={{ from: location }} replace></Navigate>;
+    return children;
+
 };
 
 export default PrivateRoutes;

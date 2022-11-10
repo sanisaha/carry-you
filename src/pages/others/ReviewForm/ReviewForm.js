@@ -26,7 +26,7 @@ const ReviewForm = () => {
             message,
             date: new Date()
         }
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://carry-you-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

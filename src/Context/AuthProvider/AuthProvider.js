@@ -27,6 +27,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const logOut = () => {
+        localStorage.removeItem('carryYou-token');
         setLoading(true);
         return signOut(auth);
     }

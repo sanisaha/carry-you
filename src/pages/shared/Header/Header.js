@@ -11,7 +11,7 @@ const Header = () => {
     const navbarItems = <>
         <li className='font-semibold'><Link to='/myreviews'>My reviews</Link></li>
         <li className='font-semibold'><Link to='/addservice'>Add Service</Link></li>
-        <li className='font-semibold'><Link>Blogs</Link></li>
+        <li className='font-semibold'><Link to='/blog'>Blogs</Link></li>
     </>
     return (
         <div className="navbar bg-base-100">
@@ -25,7 +25,7 @@ const Header = () => {
                             user?.uid ?
                                 <>{navbarItems}</>
                                 :
-                                <></>
+                                <><li className='font-semibold'><Link to='/blog'>Blogs</Link></li></>
                         }
                     </ul>
                 </div>
@@ -40,7 +40,7 @@ const Header = () => {
                         user?.uid ?
                             <>{navbarItems}</>
                             :
-                            <></>
+                            <><li className='font-semibold'><Link to='/blog'>Blogs</Link></li></>
                     }
                 </ul>
             </div>

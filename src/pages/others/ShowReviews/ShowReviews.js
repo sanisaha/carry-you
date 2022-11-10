@@ -5,7 +5,7 @@ const ShowReviews = ({ service }) => {
     const { _id } = service;
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/${_id}`)
+        fetch(`https://carry-you-server.vercel.app/reviews/${_id}`)
             .then(res => res.json())
             .then(data => setReviews(data))
             .catch(e => console.error(e))

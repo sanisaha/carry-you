@@ -15,7 +15,7 @@ const EditReview = () => {
 
     const handleEditStatus = (event) => {
         event.preventDefault();
-        fetch(`http://localhost:5000/review/${_id}`, {
+        fetch(`https://carry-you-server.vercel.app/review/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
