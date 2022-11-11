@@ -30,7 +30,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className='flex items-center'>
-                    <img src={logo} alt="" />
+                    <img className='h-12 w-12 lg:h-20 lg:w-20' src={logo} alt="" />
                     <Link to='/' className="btn btn-ghost normal-case text-xl ms-0">Carry <span className='text-orange-400'>You</span></Link>
                 </div>
             </div>

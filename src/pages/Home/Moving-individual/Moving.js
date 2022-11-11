@@ -12,7 +12,7 @@ const Moving = () => {
                      and CarryYou are here to help you with managing your relocation stress.
                       You can count on our movers to guide you
                        through the process, door to door.`}</p>
-                    <Link><button className="btn btn-primary">Get Started</button></Link>
+                    <Link to='/login'><button className="btn btn-primary">Get Started</button></Link>
                 </div>
             </div>
         </div>

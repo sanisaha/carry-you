@@ -5,6 +5,7 @@ import ServiceCard from './ServiceCard';
 const Services = () => {
     const [services, setServices] = useState([]);
     useEffect(() => {
+        // data fetch from server with decending order
         fetch('https://carry-you-server.vercel.app/limitedServices')
             .then(res => res.json())
             .then(data => setServices(data))

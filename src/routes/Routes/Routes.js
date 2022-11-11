@@ -7,6 +7,7 @@ import AllServices from "../../pages/Home/Services/AllServices";
 import ServiceDetailCard from "../../pages/Home/Services/ServiceDetailCard";
 import MyReviews from "../../pages/MyReviews/MyReviews";
 import EditReview from "../../pages/others/EditReview/EditReview";
+import Error from "../../pages/others/Error/Error";
 import ReviewForm from "../../pages/others/ReviewForm/ReviewForm";
 import Login from "../../pages/UserCredentials/Login/Login";
 import Signup from "../../pages/UserCredentials/Signup/Signup";
@@ -61,6 +62,10 @@ const routes = createBrowserRouter([
                 element: <Blogs></Blogs>
             }
         ]
+    },
+    {
+        path: '*',
+        element: <Error></Error>
     }
 ]);
 

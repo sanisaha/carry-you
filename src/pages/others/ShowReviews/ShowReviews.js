@@ -15,7 +15,7 @@ const ShowReviews = ({ service }) => {
             {reviews.map(review => <div className='p-5'
                 key={review._id}
             >
-                <div className="p-5 card w-96 bg-white shadow-xl">
+                <div className="p-1 lg:p-5 card w-4/5 mx-auto lg:w-96 bg-white shadow-xl">
                     <div className="h-3/4card-body items-center text-center">
                         <div className='text-center py-8'>
                             <p className='text-xl'>{review.message}</p>

@@ -24,7 +24,7 @@ const Signup = () => {
                 const currentUser = {
                     email: user.email
                 }
-                fetch('https://carry-you-server.vercel.app/jwt', {
+                fetch('https://carry-you-server-sanisaha.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

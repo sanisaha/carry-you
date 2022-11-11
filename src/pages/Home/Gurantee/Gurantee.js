@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaBusinessTime, FaHandsHelping, FaMoneyBillWaveAlt, FaTimes, FaTimesCircle, FaUsersCog } from 'react-icons/fa';
+import { FaBusinessTime, FaHandsHelping, FaMoneyBillWaveAlt, FaUsersCog } from 'react-icons/fa';
 
 const Gurantee = () => {
     return (

@@ -26,6 +26,8 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, profile);
     }
 
+    // jwt token remove from localstorage after logout
+
     const logOut = () => {
         localStorage.removeItem('carryYou-token');
         setLoading(true);
@@ -41,6 +43,10 @@ const AuthProvider = ({ children }) => {
         }
 
     }, [])
+
+    // all the auth provider store within an object and sending through authprovider, all children 
+    // under authprovider will recieve it
+
     const authInfo = { user, createUser, logOut, signIn, providerLogin, updateUserProfile, loading, setLoading };
     return (
         <AuthContext.Provider value={authInfo}>

@@ -5,7 +5,14 @@ import { toast } from 'react-toastify';
 import useTitle from '../../Hooks/useTitle';
 
 const AddService = () => {
+
+    // title added to this page
+
     useTitle('Add Service')
+
+    // the information on service from user are tracking through a
+    // form and information are passing to server through an object
+
     const handleService = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -19,6 +26,7 @@ const AddService = () => {
             img: img,
             price: price,
             date: new Date()
+            // data created when inputing data
         }
         fetch('https://carry-you-server.vercel.app/services', {
             method: 'POST',
@@ -43,7 +51,7 @@ const AddService = () => {
             <div className='text-center py-4'>
                 <h2 className='font-semibold text-2xl'>Add a service here</h2>
             </div>
-            <div className="mx-auto w-full max-w-[550px]">
+            <div className="mx-auto w-4/5 lg:w-full lg:max-w-[550px]">
                 <form onSubmit={handleService}>
                     <div className="mb-5">
                         <label

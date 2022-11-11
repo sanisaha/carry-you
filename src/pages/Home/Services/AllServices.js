@@ -6,6 +6,9 @@ const AllServices = () => {
     useTitle('Services')
     const [loading, setLoading] = useState(true);
     const [services, setServices] = useState([]);
+
+    // all services data were fetch from server
+
     useEffect(() => {
         fetch('https://carry-you-server.vercel.app/services')
             .then(res => res.json())
@@ -15,6 +18,9 @@ const AllServices = () => {
 
             })
     }, [])
+
+    // a spinner is added to show before loading all data
+
     if (loading) {
         return (<div className="flex justify-center items-center">
             <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">

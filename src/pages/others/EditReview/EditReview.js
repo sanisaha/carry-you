@@ -1,7 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
-import { toast } from 'react-toastify';
+import React, { useContext, useState } from 'react';
 import useTitle from '../../../Hooks/useTitle';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
@@ -15,6 +12,8 @@ const EditReview = () => {
 
     const handleEditStatus = (event) => {
         event.preventDefault();
+        // put method use for data updata, data information take from here and send to server
+        // for updating in the database
         fetch(`https://carry-you-server.vercel.app/review/${_id}`, {
             method: 'PUT',
             headers: {
@@ -54,8 +53,6 @@ const EditReview = () => {
             <div className='py-5'>
                 <input className='btn btn-submit' type="submit" value="Edit Review" />
             </div>
-            <ToastContainer />
-
         </form>
     );
 };

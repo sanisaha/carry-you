@@ -13,7 +13,9 @@ const MyReviews = () => {
     const [reviews, setReviews] = useState([]);
     const { user, logOut } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`https://carry-you-server.vercel.app/reviews?email=${user?.email}`, {
+        // user reviews fetched from server bases on their email and jwt token 
+        // which created through login, get it and send to server for verification
+        fetch(`https://carry-you-server-sanisaha.vercel.app/reviews?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('carryYou-token')}`
             }
@@ -28,9 +30,10 @@ const MyReviews = () => {
             .catch(e => console.error(e))
     }, [user?.email, logOut])
     const handleDelete = (id) => {
+        // this function take data and through server DELETE method, delete data from database
         const proceed = window.confirm('are you really want to delete')
         if (proceed) {
-            fetch(`https://carry-you-server.vercel.app/reviews/${id}`, {
+            fetch(`https://carry-you-server-sanisaha.vercel.app/review/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -64,7 +67,7 @@ const MyReviews = () => {
                     </>
                     :
                     <><div className="overflow-x-auto pt-10 pb-32">
-                        <table className="table w-1/4 lg:w-4/5 mx-auto">
+                        <table className="table w-32 lg:w-4/5 mx-auto">
                             <thead>
                                 <tr>
                                     <th></th>
