@@ -8,8 +8,10 @@ const ServiceCard = ({ service }) => {
     return (
         <PhotoProvider>
             <div className="card w-full bg-base-100 shadow-xl">
-                <PhotoView src={img}><figure><img src={img} alt="Shoes" /></figure></PhotoView>
-                <div className="card-body">
+                <div className='lg:h-1/2 p-5'>
+                    <PhotoView src={img}><figure className='lg:w-80 lg:h-40'><img src={img} alt="services" /></figure></PhotoView>
+                </div>
+                <div className="card-body lg:h-1/2">
                     <h2 className="card-title">
                         {title}
                     </h2>
